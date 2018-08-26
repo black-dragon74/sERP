@@ -105,23 +105,23 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
                     <li class="nav-small-cap">GENERAL INFO</li>
-                    <li class="{{ (Request::segment(1) == '') ? 'active' : '' }}">
-                        <a href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
+                    <li class="{{ (Request::url() == route('student.dashboard')) ? 'active' : '' }}">
+                        <a href="{{ route('student.dashboard') }}" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a>
                     </li>
-                    <li class="{{ (Request::segment(1) == 'faculty-details') ? 'active' : '' }}">
-                        <a href="#" aria-expanded="false"><i class="mdi mdi-tie"></i><span class="hide-menu">Faculty Details</span></a>
+                    <li class="{{ (Request::url() == route('student.numbers')) ? 'active' : '' }}">
+                        <a href="{{ route('student.numbers') }}" aria-expanded="false"><i class="mdi mdi-tie"></i><span class="hide-menu">Faculty Details</span></a>
                     </li>
-                    <li class="{{ (Request::segment(1) == 'timetable') ? 'active' : '' }}">
-                        <a href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Time Table</span></a>
+                    <li class="{{ (Request::url() == route('student.timetable')) ? 'active' : '' }}">
+                        <a href="{{ route('student.timetable') }}" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Time Table</span></a>
                     </li>
-                    <li class="{{ (Request::segment(1) == 'financial-details') ? 'active' : '' }}">
-                        <a href="#" aria-expanded="false"><i class="fa fa-dollar-sign"></i><span class="hide-menu">Financial Details</span></a>
+                    <li class="{{ (Request::url() == route('student.financials')) ? 'active' : '' }}">
+                        <a href="{{ route('student.financials') }}" aria-expanded="false"><i class="fa fa-dollar-sign"></i><span class="hide-menu">Financial Details</span></a>
                     </li>
-                    <li class="{{ (Request::segment(1) == 'academic-details') ? 'active' : '' }}">
-                        <a href="#" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Academic Details</span></a>
+                    <li class="{{ (Request::url() == route('student.academics')) ? 'active' : '' }}">
+                        <a href="{{ route('student.academics') }}" aria-expanded="false"><i class="fa fa-book"></i><span class="hide-menu">Academic Details</span></a>
                     </li>
-                    <li class="{{ (Request::segment(1) == 'profile') ? 'active' : '' }}">
-                        <a href="#" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">My Profile</span></a>
+                    <li class="{{ (Request::url() == route('student.profile')) ? 'active' : '' }}">
+                        <a href="{{ route('student.profile') }}" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">My Profile</span></a>
                     </li>
 
                     {{-- Drop down menu --}}

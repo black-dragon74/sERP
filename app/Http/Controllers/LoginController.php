@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-
-// Models to be used
-use \App\Students as Student;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -29,21 +25,28 @@ class LoginController extends Controller
 
     /**
      * Checks for the login and redirects to appropriate user-type landing page.
+     * If a redirect query string is attached to the URL the system will redirect to that page
      *
      * @param \Illuminate\Http\Request $request
      * @return void
      */
     public function login(Request $request){
 
-        // Store user credentials from the request in a var (excluding the CSRF token)
-        $userCredentials = $request->except('_token', 'remember');
+        // Hmm... So you wanna see that famous dashboard? Well well!
+        // I just need your username and password to take you there.
+        $userCredentials = $request->only('username', 'password');
 
-        // First, attempt to make a student auth. If successful, redirect to dashboard
+        // Umm... U a student? Let's find out.
         if (Auth::guard('students')->attempt($userCredentials)){
-            // Means that the user trying to log in is a student
-            return redirect()->intended(route('student.dashboard'));
+            // Yayy!! Access granted. Lemme take you place(s).
+            // If you already made the choice we'll go there else I'll take you to the shiny dashboard.
+            $redirectURL = $request->has('redirect') ? env('APP_URL').'/'.$request->redirect : route('student.dashboard');
+
+            // Houston, we have a lift off!
+            return redirect()->intended($redirectURL);
         }
         else {
+            // The login attempt that you made has failed, back to login baby!
             return redirect(route('view_login'))->with('error', 'Login Failed!');
         }
 

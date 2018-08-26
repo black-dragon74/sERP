@@ -37,7 +37,7 @@
     <div class="login-register" style="background-image:url({{ asset('images/background/login.jpeg') }});">
         <div class="login-box card">
             <div class="card-body">
-                <form class="form-horizontal form-material" id="loginform" action="{{ route('post_login') }}" method="post">
+                <form class="form-horizontal form-material" id="loginform" action="{{ (Request::has('redirect')) ? route('post_login').'?redirect='.request('redirect') : route('post_login') }}" method="post">
                     {{-- Implement CSRF protection --}}
                     @csrf
                     <h3 class="box-title m-b-20">Sign In to {{ env('APP_NAME') }}</h3>

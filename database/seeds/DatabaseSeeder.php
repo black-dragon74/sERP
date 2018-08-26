@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $user = new \App\Students;
+
+        $user->username = 'nick';
+        $user->password = \Illuminate\Support\Facades\Hash::make('123');
+        $user->email = 'nickk.2974@gmail.com';
+
+        $user->save();
     }
 }

@@ -21,7 +21,14 @@ class CheckStudentAuth
          * We have a custom guard defined for students. We'll use that to do the verification
          */
         if (!Auth::guard('students')->check()){
-            return (redirect()->route('view_login'))->with('error', 'You must login first.');
+            // First we will get the current URL path from the request
+            $currentURL = $request->path();
+
+            // Now we will form the URL with redirect appended as a query string
+            $redirectURL = route('view_login').'?redirect='.$currentURL;
+
+            // Time to send the user away
+            return redirect($redirectURL)->with('error', 'You must login first');
         }
 
         return $next($request);
